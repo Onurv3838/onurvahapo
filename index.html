@@ -57,19 +57,15 @@ particlesJS('particles-js',{
 // Howler.js
 var sound = new Howl({
   src: ['https://github.com/Onurv3838/onurvahapo/raw/refs/heads/main/assala.mp3'],
-  autoplay: true,
+  autoplay: false,
   loop: true,
-  volume: 0.2,
-  mute: true
+  volume: 0.2
 });
 
-// Sayfa açıldığında autoplay denemesi
-window.addEventListener('load', ()=>{ sound.play(); });
-
-// Müzik emojisine tıklayınca sesi aç/kapat
+// Müzik emojisine tıklayınca çal / dur
 document.getElementById('music-btn').addEventListener('click', ()=>{
-  if(sound.mute()){ sound.mute(false); sound.volume(0.2); }
-  else { sound.mute(true); }
+  if(!sound.playing()){ sound.play(); }
+  else { sound.pause(); }
 });
 
 // Mouse hareketi ile GIF ve yazı
@@ -83,8 +79,8 @@ document.addEventListener('mousemove', function(e){
 // Sağ tık engelleme
 document.addEventListener('contextmenu', e=>{ e.preventDefault(); });
 
-// Mobil dokununca çal
-document.body.addEventListener('touchstart', ()=>{ if(!sound.playing()){ sound.play(); sound.mute(false); sound.volume(0.2); }},{once:true});
+// Mobilde dokununca çalmayı ekle
+document.body.addEventListener('touchstart', ()=>{ if(!sound.playing()){ sound.play(); }},{once:true});
 </script>
 
 </body>
