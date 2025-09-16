@@ -70,25 +70,24 @@ h1.neon {
   z-index:2;
   transition: transform 0.1s;
 }
-.instagram-overlay {
-  position:absolute;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:3;
+.controls-container {
+  margin-top:15px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
 }
-.instagram-overlay svg {
+.controls-container a svg {
   width:50px;
   height:50px;
   fill:white;
   transition: transform 0.3s, fill 0.3s;
 }
-.instagram-overlay svg:hover {
+.controls-container a svg:hover {
   transform:scale(1.3) rotate(15deg);
   fill:#fff;
 }
 #music-btn {
-  margin-top:15px;
   font-size:2rem;
   cursor:pointer;
   background:none;
@@ -108,21 +107,21 @@ h1.neon {
 <div class="content">
   <h1 class="neon">Kayseri Sulu Kaplama</h1>
 
+  <!-- Neon yazının altında Instagram logosu -->
+  <a href="https://www.instagram.com/kaplama.art/" target="_blank">
+    <svg viewBox="0 0 448 512">
+      <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.71-30.71C288,124,224,124,224,124s-64,0-93.88,6.88A54,54,0,0,0,99.41,136.94,54.39,54.39,0,0,0,92,171.6C85.12,201.5,85,256,85,256s0,64,6.88,93.88a54,54,0,0,0,7.38,34.66,54.39,54.39,0,0,0,34.6,7.38c29.88,6.88,93.88,6.88,93.88,6.88s64,0,93.88-6.88a54,54,0,0,0,34.6-7.38,54.39,54.39,0,0,0,7.38-34.6c6.88-29.88,6.88-93.88,6.88-93.88s0-64-6.88-93.88ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85.33-148.7a19.33,19.33,0,1,1,19.33-19.33A19.34,19.34,0,0,1,309.33,189.3Z"/>
+    </svg>
+  </a>
+
   <div class="gif-container">
     <img src="https://s14.gifyu.com/images/bTfB9.gif" id="main-gif" draggable="false">
-
-    <!-- Instagram logosu GIF'in üstüne -->
-    <div class="instagram-overlay">
-      <a href="https://www.instagram.com/kaplama.art/" target="_blank">
-        <svg viewBox="0 0 448 512">
-          <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.71-30.71C288,124,224,124,224,124s-64,0-93.88,6.88A54,54,0,0,0,99.41,136.94,54.39,54.39,0,0,0,92,171.6C85.12,201.5,85,256,85,256s0,64,6.88,93.88a54,54,0,0,0,7.38,34.66,54.39,54.39,0,0,0,34.6,7.38c29.88,6.88,93.88,6.88,93.88,6.88s64,0,93.88-6.88a54,54,0,0,0,34.6-7.38,54.39,54.39,0,0,0,7.38-34.6c6.88-29.88,6.88-93.88,6.88-93.88s0-64-6.88-93.88ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85.33-148.7a19.33,19.33,0,1,1,19.33-19.33A19.34,19.34,0,0,1,309.33,189.3Z"/>
-        </svg>
-      </a>
-    </div>
   </div>
 
-  <!-- Müzik butonu -->
-  <button id="music-btn">🎵</button>
+  <!-- Müzik butonu GIF’in altında -->
+  <div class="controls-container">
+    <button id="music-btn">🎵</button>
+  </div>
 </div>
 
 <script>
@@ -133,14 +132,14 @@ particlesJS('particles-js',{
   "retina_detect":true
 });
 
-// Howler.js müzik objesi (başlangıçta çalmıyor)
+// Howler.js müzik objesi
 var sound = new Howl({
   src: ['https://github.com/Onurv3838/onurvahapo/raw/refs/heads/main/assala.mp3'],
   loop: true,
   volume: 0.2
 });
 
-// Müzik butonuna basınca çal / durdur
+// Müzik butonuna basınca çal/durdur
 var playing = false;
 document.getElementById('music-btn').addEventListener('click', function(){
   if(!playing){
@@ -154,7 +153,7 @@ document.getElementById('music-btn').addEventListener('click', function(){
   }
 });
 
-// Mouse hareketine göre GIF ve yazı animasyonu
+// Mouse hareketine göre GIF ve neon yazı animasyonu
 document.addEventListener('mousemove', function(e){
   const x = (window.innerWidth/2 - e.clientX)/30;
   const y = (window.innerHeight/2 - e.clientY)/30;
