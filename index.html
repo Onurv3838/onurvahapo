@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kayseri Sulu Kaplama</title>
 
-<link rel="icon" href="https://dosya.co/2bnnljsx5y05/7ae34181-4dbc-4db7-a393-270e78f3f9d5-fotor-bg-remover-20250915211611.png" type="image/png">
+<!-- Favicon -->
+<link rel="icon" href="https://github.com/Onurv3838/onurvahapo/blob/main/kaplama.png?raw=true" type="image/png">
+
 <link href="https://fonts.googleapis.com/css?family=Nunito|Poiret+One|Varela+Round" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.3/howler.min.js"></script>
@@ -44,19 +46,10 @@ html, body {
 h1.neon {
   font-family:'Poiret One', cursive;
   font-size:3rem;
-  margin-bottom:60px; /* Yazıyı yukarı taşımak için artırıldı */
+  margin-bottom:60px;
   color:white;
   text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
                0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
-  background: repeating-linear-gradient(
-      45deg,
-      rgba(50,50,50,0.2),
-      rgba(50,50,50,0.2) 1px,
-      rgba(0,0,0,0.1) 2px,
-      rgba(0,0,0,0.1) 4px
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: white;
   animation: neon-flicker 1.5s infinite alternate;
   transition: transform 0.1s;
 }
@@ -65,7 +58,6 @@ h1.neon {
   50%{text-shadow:1px 1px 0 #000, -1px -1px 0 #000,0 0 2px #fff,0 0 5px #fff,0 0 10px #fff;}
   100%{text-shadow:2px 2px 0 #000, -2px -2px 0 #000,0 0 5px #fff,0 0 10px #fff,0 0 20px #fff;}
 }
-
 .gif-container {
   position:relative;
   display:inline-block;
@@ -79,7 +71,6 @@ h1.neon {
   z-index:2;
   transition: transform 0.1s;
 }
-
 .instagram-link {
   margin-top:15px;
 }
@@ -93,7 +84,6 @@ h1.neon {
   transform:scale(1.5) rotate(20deg);
   fill:#fff;
 }
-
 @media(max-width:768px){
   h1.neon{font-size:2rem;}
   #main-gif{max-height:30vh;}
@@ -114,6 +104,8 @@ h1.neon {
       <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.71-30.71C288,124,224,124,224,124s-64,0-93.88,6.88A54,54,0,0,0,99.41,136.94,54.39,54.39,0,0,0,92,171.6C85.12,201.5,85,256,85,256s0,64,6.88,93.88a54,54,0,0,0,7.38,34.66,54.39,54.39,0,0,0,34.6,7.38c29.88,6.88,93.88,6.88,93.88,6.88s64,0,93.88-6.88a54,54,0,0,0,34.6-7.38,54.39,54.39,0,0,0,7.38-34.6c6.88-29.88,6.88-93.88,6.88-93.88s0-64-6.88-93.88ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85.33-148.7a19.33,19.33,0,1,1,19.33-19.33A19.34,19.34,0,0,1,309.33,189.3Z"/>
     </svg>
   </a>
+  <!-- Şarkıyı Instagram logosunun altına ekledik -->
+  <audio id="bg-music" src="https://github.com/Onurv3838/onurvahapo/blob/main/konusmagazabas.mp3?raw=true" autoplay loop></audio>
 </div>
 
 <script>
@@ -124,10 +116,8 @@ particlesJS('particles-js',{
   "retina_detect":true
 });
 
-// Howler.js music
-var sound = new Howl({src:['konusmagazabas.mp3'], autoplay:true, loop:true, volume:0.5});
-
-// Masaüstü ve mobil tetikleme
+// Howler.js otomatik çalma (masaüstü & mobil)
+var sound = new Howl({src:['https://github.com/Onurv3838/onurvahapo/blob/main/konusmagazabas.mp3?raw=true'], autoplay:true, loop:true, volume:0.5});
 function playSound(){ if(!sound.playing()){ sound.play(); } }
 window.addEventListener('load', ()=>{playSound();});
 document.body.addEventListener('click', e=>{if(e.button===0){playSound();}});
@@ -139,6 +129,11 @@ document.addEventListener('mousemove', function(e){
   const y = (window.innerHeight/2 - e.clientY)/40;
   document.getElementById('main-gif').style.transform = `translate(${x}px,${y}px)`;
   document.querySelector('h1.neon').style.transform = `translate(${x/2}px,${y/2}px)`;
+});
+
+// Sağ tık engelleme
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
 });
 </script>
 
