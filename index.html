@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kayseri Sulu Kaplama</title>
 
+<!-- Favicon -->
+<link rel="icon" href="https://s14.gifyu.com/images/bTfB9.gif" type="image/gif">
+
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Nunito|Poiret+One|Varela+Round" rel="stylesheet">
 
@@ -31,6 +34,12 @@
     background: black;
     color: white;
     text-align: center;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   #particles-js {
@@ -44,21 +53,27 @@
 
   .content {
     position: relative;
-    z-index: 2; /* particles arkasında */
+    z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 0 10px;
+    box-sizing: border-box;
   }
 
-  img {
+  img#main-gif {
     max-width: 90%;
+    max-height: 50vh; /* Mobilde dikeyde büyük olmasını önler */
     height: auto;
     transition: transform 0.2s;
+    border-radius: 10px;
+    -webkit-user-drag: none;
+    user-drag: none;
   }
 
-  /* Fireworks placeholder divs */
+  /* Fireworks */
   .firework-spark {
     position: absolute;
     border-radius: 50%;
@@ -69,20 +84,28 @@
 
   h1 {
     font-family: 'Poiret One', cursive;
-    font-size: 3rem;
+    font-size: 2.5rem;
     letter-spacing: 0.2em;
     text-shadow: 0 0 25px rgba(255,255,255,0.85);
     margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 2rem; }
   }
 </style>
 </head>
-<body>
 
+<body onclick="sound.play()">
+
+<!-- Particles Background -->
 <div id="particles-js"></div>
 
+<!-- Content -->
 <div class="content">
   <h1>Kayseri Sulu Kaplama</h1>
-  <img src="https://s14.gifyu.com/images/bTfB9.gif" id="main-gif">
+  <img src="https://s14.gifyu.com/images/bTfB9.gif" id="main-gif" draggable="false">
 </div>
 
 <!-- Particles.js Script -->
@@ -146,9 +169,17 @@
 <script>
   var sound = new Howl({
     src: ['https://www.dropbox.com/scl/fi/1ez7rxjuzfa21i88ji4mg/132-08B-LVBEL-C5-Konusma-Gaza-Bas-ARMON-Remix.mp3?raw=1'],
-    autoplay: true,
+    autoplay: false,
     loop: true,
     volume: 0.5
+  });
+</script>
+
+<!-- Sağ Tık Engelleme -->
+<script>
+  document.addEventListener('contextmenu', function(e){
+    e.preventDefault();
+    // alert("Görseller korunuyor!"); // isteğe bağlı uyarı
   });
 </script>
 
