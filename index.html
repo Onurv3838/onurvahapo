@@ -15,7 +15,7 @@
 <style>
 html, body {margin:0; padding:0; height:100%; overflow:hidden; font-family:'Nunito', sans-serif; background:black; color:white; user-select:none;}
 #particles-js {width:100%; height:100%; position:fixed; top:0; left:0; z-index:1;}
-.content {position:relative; z-index:2; display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh;}
+.content {position:relative; z-index:2; display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; text-align:center;}
 h1.neon {
   font-family:'Poiret One', cursive;
   font-size:3rem;
@@ -46,11 +46,19 @@ h1.neon {
   75% {transform: translateY(5px) rotate(1deg);}
   100% {transform: translateY(0px) rotate(0deg);}
 }
-.gif-container {position:relative;}
-#main-gif {max-width:90%; max-height:45vh; border-radius:10px; user-drag:none; position:relative; z-index:2;}
-.instagram-link svg {width:50px; height:50px; fill:white; margin-top:15px; transition: transform 0.3s, fill 0.3s;}
+
+.gif-container {position:relative; display:inline-block;}
+#main-gif {max-width:90%; max-height:45vh; border-radius:10px; user-drag:none; z-index:2; animation: gif-move 4s infinite alternate;}
+@keyframes gif-move {0%{transform:rotate(-1deg);}50%{transform:rotate(1deg);}100%{transform:rotate(-1deg);}}
+
+.instagram-link {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:3;}
+.instagram-link svg {width:60px; height:60px; fill:white; transition: transform 0.3s, fill 0.3s;}
 .instagram-link:hover svg {transform:scale(1.5) rotate(20deg); fill:#fff;}
-@media(max-width:768px){h1.neon{font-size:2rem;}#main-gif{max-height:30vh;}}
+
+@media(max-width:768px){
+  h1.neon{font-size:2rem;}
+  #main-gif{max-height:30vh;}
+}
 </style>
 </head>
 <body>
@@ -61,12 +69,12 @@ h1.neon {
   <h1 class="neon">Kayseri Sulu Kaplama</h1>
   <div class="gif-container">
     <img src="https://s14.gifyu.com/images/bTfB9.gif" id="main-gif" draggable="false">
+    <a href="https://www.instagram.com/kaplama.art/" target="_blank" class="instagram-link">
+      <svg viewBox="0 0 448 512">
+        <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.71-30.71C288,124,224,124,224,124s-64,0-93.88,6.88A54,54,0,0,0,99.41,136.94,54.39,54.39,0,0,0,92,171.6C85.12,201.5,85,256,85,256s0,64,6.88,93.88a54,54,0,0,0,7.38,34.66,54.39,54.39,0,0,0,34.6,7.38c29.88,6.88,93.88,6.88,93.88,6.88s64,0,93.88-6.88a54,54,0,0,0,34.6-7.38,54.39,54.39,0,0,0,7.38-34.6c6.88-29.88,6.88-93.88,6.88-93.88s0-64-6.88-93.88ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85.33-148.7a19.33,19.33,0,1,1,19.33-19.33A19.34,19.34,0,0,1,309.33,189.3Z"/>
+      </svg>
+    </a>
   </div>
-  <a href="https://www.instagram.com/kaplama.art/" target="_blank" class="instagram-link">
-    <svg viewBox="0 0 448 512">
-      <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.71-30.71C288,124,224,124,224,124s-64,0-93.88,6.88A54,54,0,0,0,99.41,136.94,54.39,54.39,0,0,0,92,171.6C85.12,201.5,85,256,85,256s0,64,6.88,93.88a54,54,0,0,0,7.38,34.66,54.39,54.39,0,0,0,34.6,7.38c29.88,6.88,93.88,6.88,93.88,6.88s64,0,93.88-6.88a54,54,0,0,0,34.6-7.38,54.39,54.39,0,0,0,7.38-34.6c6.88-29.88,6.88-93.88,6.88-93.88s0-64-6.88-93.88ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85.33-148.7a19.33,19.33,0,1,1,19.33-19.33A19.34,19.34,0,0,1,309.33,189.3Z"/>
-    </svg>
-  </a>
 </div>
 
 <script>
@@ -86,9 +94,7 @@ var sound = new Howl({
 });
 
 // Masaüstü ve mobil tetikleme
-function playSound(){
-  if(!sound.playing()){ sound.play(); }
-}
+function playSound(){ if(!sound.playing()){ sound.play(); } }
 window.addEventListener('load', ()=>{playSound();});
 document.body.addEventListener('click', e=>{if(e.button===0){playSound();}});
 document.body.addEventListener('touchstart', ()=>{playSound();}, {once:true});
