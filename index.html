@@ -6,7 +6,7 @@
 <title>Kayseri Sulu Kaplama</title>
 
 <!-- Favicon -->
-<link rel="icon" href="https://s14.gifyu.com/images/bTfB9.gif" type="image/gif">
+<link rel="icon" href="https://dosya.co/2bnnljsx5y05/7ae34181-4dbc-4db7-a393-270e78f3f9d5-fotor-bg-remover-20250915211611.png" type="image/png">
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Nunito|Poiret+One|Varela+Round" rel="stylesheet">
@@ -25,74 +25,75 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 
 <style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-    font-family: 'Nunito', sans-serif;
-    background: black;
-    color: white;
-    text-align: center;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Nunito', sans-serif;
+  background: black;
+  color: white;
+  text-align: center;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
-  #particles-js {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
+#particles-js {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
 
-  .content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 0 10px;
-    box-sizing: border-box;
-  }
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Üstten başlat */
+  align-items: center;
+  height: 100vh;
+  padding-top: 50px; /* Mobilde görseli biraz yukarı taşı */
+  box-sizing: border-box;
+}
 
-  img#main-gif {
-    max-width: 90%;
-    max-height: 50vh;
-    height: auto;
-    transition: transform 0.2s;
-    border-radius: 10px;
-    -webkit-user-drag: none;
-    user-drag: none;
-  }
+img#main-gif {
+  max-width: 90%;
+  max-height: 45vh; /* Mobilde biraz daha küçültüldü */
+  height: auto;
+  transition: transform 0.2s;
+  border-radius: 10px;
+  -webkit-user-drag: none;
+  user-drag: none;
+}
 
-  .firework-spark {
-    position: absolute;
-    border-radius: 50%;
-    width: 8px;
-    height: 8px;
-    background-color: #ffff80;
-  }
+.firework-spark {
+  position: absolute;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  background-color: #ffff80;
+}
 
-  h1 {
-    font-family: 'Poiret One', cursive;
-    font-size: 2.5rem;
-    letter-spacing: 0.2em;
-    text-shadow: 0 0 25px rgba(255,255,255,0.85);
-    margin-bottom: 20px;
-    line-height: 1.2;
-  }
+h1 {
+  font-family: 'Poiret One', cursive;
+  font-size: 2.5rem;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 25px rgba(255,255,255,0.85);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
 
-  @media (max-width: 768px) {
-    h1 { font-size: 2rem; }
-  }
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  img#main-gif { max-height: 30vh; margin-top: 20px; } /* Mobilde küçült ve biraz yukarı al */
+}
 </style>
 </head>
 
@@ -109,76 +110,83 @@
 
 <!-- Particles.js Script -->
 <script>
-  particlesJS('particles-js', {
-    "particles": {
-      "number": {"value": 80, "density": {"enable": true, "value_area": 800}},
-      "color": {"value": "#ffffff"},
-      "shape": {"type": "circle"},
-      "opacity": {"value":0.5},
-      "size":{"value":5,"random":true},
-      "line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},
-      "move":{"enable":true,"speed":6,"direction":"none","out_mode":"out"}
-    },
-    "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"}},"modes":{"repulse":{"distance":200},"push":{"particles_nb":4}}},
-    "retina_detect": true
-  });
+particlesJS('particles-js', {
+  "particles": {
+    "number": {"value": 80, "density": {"enable": true, "value_area": 800}},
+    "color": {"value": "#ffffff"},
+    "shape": {"type": "circle"},
+    "opacity": {"value":0.5},
+    "size":{"value":5,"random":true},
+    "line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},
+    "move":{"enable":true,"speed":6,"direction":"none","out_mode":"out"}
+  },
+  "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"}},"modes":{"repulse":{"distance":200},"push":{"particles_nb":4}}},
+  "retina_detect": true
+});
 </script>
 
 <!-- Fireworks JS -->
 <script>
-  const numSparks = 14;
-  const sparks = [];
-  for(let i=0;i<numSparks;i++){
-    const div = document.createElement('div');
-    div.classList.add('firework-spark');
-    document.body.appendChild(div);
-    sparks.push(div);
-  }
+const numSparks = 14;
+const sparks = [];
+for(let i=0;i<numSparks;i++){
+  const div = document.createElement('div');
+  div.classList.add('firework-spark');
+  document.body.appendChild(div);
+  sparks.push(div);
+}
 
-  let step = 0;
-  function launchFireworks(){
-    step++;
-    const winH = window.innerHeight;
-    const winW = window.innerWidth;
-    const centerX = winW/2;
-    const centerY = winH/2;
+let step = 0;
+function launchFireworks(){
+  step++;
+  const winH = window.innerHeight;
+  const winW = window.innerWidth;
+  const centerX = winW/2;
+  const centerY = winH/2;
 
-    sparks.forEach((spark, i) => {
-      const angle = (360/numSparks) * i * Math.PI/180;
-      spark.style.top = centerY + Math.sin(step/10 + angle) * 100 + "px";
-      spark.style.left = centerX + Math.cos(step/10 + angle) * 100 + "px";
-    });
+  sparks.forEach((spark, i) => {
+    const angle = (360/numSparks) * i * Math.PI/180;
+    spark.style.top = centerY + Math.sin(step/10 + angle) * 100 + "px";
+    spark.style.left = centerX + Math.cos(step/10 + angle) * 100 + "px";
+  });
 
-    requestAnimationFrame(launchFireworks);
-  }
-  launchFireworks();
+  requestAnimationFrame(launchFireworks);
+}
+launchFireworks();
 </script>
 
 <!-- GIF Mouse Move -->
 <script>
-  const img = document.getElementById('main-gif');
-  document.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 20;
-    const y = (e.clientY / window.innerHeight - 0.5) * 20;
-    img.style.transform = `translate(${x}px, ${y}px)`;
-  });
+const img = document.getElementById('main-gif');
+document.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 20;
+  const y = (e.clientY / window.innerHeight - 0.5) * 20;
+  img.style.transform = `translate(${x}px, ${y}px)`;
+});
 </script>
 
 <!-- Background Music with Howler.js -->
 <script>
-  var sound = new Howl({
-    src: ['https://www.dropbox.com/scl/fi/1ez7rxjuzfa21i88ji4mg/132-08B-LVBEL-C5-Konusma-Gaza-Bas-ARMON-Remix.mp3?rlkey=5i1vj8bjy7prpnin3y5qzj9ay&e=1&dl=0'],
-    autoplay: true,
-    loop: true,
-    volume: 0.5
-  });
+var sound = new Howl({
+  src: ['https://raw.githubusercontent.com/Onurv3838/onurvahapo/main/konusmagazabas.mp3'],
+  autoplay: true,
+  loop: true,
+  volume: 0.5
+});
+
+// Mobilde autoplay engeli varsa, kullanıcı ilk dokunuşta çalsın
+document.body.addEventListener('click', () => {
+  if(!sound.playing()){
+    sound.play();
+  }
+}, { once: true });
 </script>
 
 <!-- Sağ Tık Engelleme -->
 <script>
-  document.addEventListener('contextmenu', function(e){
-    e.preventDefault();
-  });
+document.addEventListener('contextmenu', function(e){
+  e.preventDefault();
+});
 </script>
 
 </body>
