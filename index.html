@@ -19,7 +19,7 @@ html, body {margin:0; padding:0; height:100%; overflow:hidden; font-family:'Nuni
 h1.neon {
   font-family:'Poiret One', cursive;
   font-size:3rem;
-  margin-bottom:20px;
+  margin-bottom:10px;
   color:white;
   text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
                0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
@@ -32,27 +32,19 @@ h1.neon {
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: white;
-  animation: neon-flicker 1.5s infinite alternate, move-text 3s infinite ease-in-out;
+  animation: neon-flicker 1.5s infinite alternate;
+  transition: transform 0.1s;
 }
 @keyframes neon-flicker {
   0%{text-shadow:2px 2px 0 #000, -2px -2px 0 #000,0 0 5px #fff,0 0 10px #fff,0 0 20px #fff;}
   50%{text-shadow:1px 1px 0 #000, -1px -1px 0 #000,0 0 2px #fff,0 0 5px #fff,0 0 10px #fff;}
   100%{text-shadow:2px 2px 0 #000, -2px -2px 0 #000,0 0 5px #fff,0 0 10px #fff,0 0 20px #fff;}
 }
-@keyframes move-text {
-  0% {transform: translateY(0px) rotate(0deg);}
-  25% {transform: translateY(-5px) rotate(-1deg);}
-  50% {transform: translateY(0px) rotate(0deg);}
-  75% {transform: translateY(5px) rotate(1deg);}
-  100% {transform: translateY(0px) rotate(0deg);}
-}
 
-.gif-container {position:relative; display:inline-block;}
-#main-gif {max-width:90%; max-height:45vh; border-radius:10px; user-drag:none; z-index:2; animation: gif-move 4s infinite alternate;}
-@keyframes gif-move {0%{transform:rotate(-1deg);}50%{transform:rotate(1deg);}100%{transform:rotate(-1deg);}}
-
-.instagram-link {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:3;}
-.instagram-link svg {width:60px; height:60px; fill:white; transition: transform 0.3s, fill 0.3s;}
+.gif-container {position:relative; display:inline-block; margin-top:-20px;}
+#main-gif {max-width:90%; max-height:40vh; border-radius:10px; user-drag:none; z-index:2; transition: transform 0.1s;}
+.instagram-link {margin-top:15px;}
+.instagram-link svg {width:50px; height:50px; fill:white; transition: transform 0.3s, fill 0.3s;}
 .instagram-link:hover svg {transform:scale(1.5) rotate(20deg); fill:#fff;}
 
 @media(max-width:768px){
@@ -69,12 +61,12 @@ h1.neon {
   <h1 class="neon">Kayseri Sulu Kaplama</h1>
   <div class="gif-container">
     <img src="https://s14.gifyu.com/images/bTfB9.gif" id="main-gif" draggable="false">
-    <a href="https://www.instagram.com/kaplama.art/" target="_blank" class="instagram-link">
-      <svg viewBox="0 0 448 512">
-        <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.71-30.71C288,124,224,124,224,124s-64,0-93.88,6.88A54,54,0,0,0,99.41,136.94,54.39,54.39,0,0,0,92,171.6C85.12,201.5,85,256,85,256s0,64,6.88,93.88a54,54,0,0,0,7.38,34.66,54.39,54.39,0,0,0,34.6,7.38c29.88,6.88,93.88,6.88,93.88,6.88s64,0,93.88-6.88a54,54,0,0,0,34.6-7.38,54.39,54.39,0,0,0,7.38-34.6c6.88-29.88,6.88-93.88,6.88-93.88s0-64-6.88-93.88ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85.33-148.7a19.33,19.33,0,1,1,19.33-19.33A19.34,19.34,0,0,1,309.33,189.3Z"/>
-      </svg>
-    </a>
   </div>
+  <a href="https://www.instagram.com/kaplama.art/" target="_blank" class="instagram-link">
+    <svg viewBox="0 0 448 512">
+      <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.71-30.71C288,124,224,124,224,124s-64,0-93.88,6.88A54,54,0,0,0,99.41,136.94,54.39,54.39,0,0,0,92,171.6C85.12,201.5,85,256,85,256s0,64,6.88,93.88a54,54,0,0,0,7.38,34.66,54.39,54.39,0,0,0,34.6,7.38c29.88,6.88,93.88,6.88,93.88,6.88s64,0,93.88-6.88a54,54,0,0,0,34.6-7.38,54.39,54.39,0,0,0,7.38-34.6c6.88-29.88,6.88-93.88,6.88-93.88s0-64-6.88-93.88ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85.33-148.7a19.33,19.33,0,1,1,19.33-19.33A19.34,19.34,0,0,1,309.33,189.3Z"/>
+    </svg>
+  </a>
 </div>
 
 <script>
@@ -86,18 +78,21 @@ particlesJS('particles-js',{
 });
 
 // Howler.js music
-var sound = new Howl({
-  src:['konusmagazabas.mp3'],
-  autoplay:true,
-  loop:true,
-  volume:0.5
-});
+var sound = new Howl({src:['konusmagazabas.mp3'], autoplay:true, loop:true, volume:0.5});
 
 // Masaüstü ve mobil tetikleme
 function playSound(){ if(!sound.playing()){ sound.play(); } }
 window.addEventListener('load', ()=>{playSound();});
 document.body.addEventListener('click', e=>{if(e.button===0){playSound();}});
 document.body.addEventListener('touchstart', ()=>{playSound();}, {once:true});
+
+// Mouse hareketine göre GIF ve yazı animasyonu
+document.addEventListener('mousemove', function(e){
+  const x = (window.innerWidth/2 - e.clientX)/40; // yavaş hareket
+  const y = (window.innerHeight/2 - e.clientY)/40;
+  document.getElementById('main-gif').style.transform = `translate(${x}px,${y}px)`;
+  document.querySelector('h1.neon').style.transform = `translate(${x/2}px,${y/2}px)`;
+});
 </script>
 
 </body>
