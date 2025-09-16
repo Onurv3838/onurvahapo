@@ -108,7 +108,7 @@ h1.neon {
   <!-- Şarkı player -->
   <div style="margin-top:15px;">
     <audio id="bg-music" controls autoplay loop>
-      <source src="https://github.com/Onurv3838/onurvahapo/blob/main/konusmagazabas.mp3?raw=true" type="audio/mpeg">
+      <source src="https://github.com/Onurv3838/onurvahapo/blob/main/assala.mp3?raw=true" type="audio/mpeg">
       Tarayıcınız audio elementini desteklemiyor.
     </audio>
   </div>
@@ -122,20 +122,36 @@ particlesJS('particles-js',{
   "retina_detect":true
 });
 
-// Howler.js ile otomatik çalma (masaüstü & mobil)
-var sound = new Howl({
-  src: ['https://github.com/Onurv3838/onurvahapo/blob/main/konusmagazabas.mp3?raw=true'],
-  autoplay: true,
-  loop: true,
-  volume: 0.5
-});
+<!-- Görünmez autoplay audio -->
+<audio id="bg-music" autoplay loop muted>
+  <source src="https://github.com/Onurv3838/onurvahapo/blob/main/konusmagazabas.mp3?raw=true" type="audio/mpeg">
+</audio>
 
-// Masaüstü tıklamayla çal
-document.body.addEventListener('click', e=>{
-  if(e.button===0){ 
-    if(!sound.playing()){ sound.play(); }
-  }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.3/howler.min.js"></script>
+<script>
+window.addEventListener('load', function() {
+    const audio = document.getElementById('bg-music');
+    
+    // Muted ile başlat, sonra sesi aç
+    audio.play().then(() => {
+        audio.muted = false; // Tarayıcı izin verirse sesi aç
+    }).catch((err) => {
+        console.log("Otomatik çalma engellendi, kullanıcı dokunsun: ", err);
+    });
+
+    // Howler.js ile kontrol
+    var sound = new Howl({
+        src: ['https://github.com/Onurv3838/onurvahapo/blob/main/konusmagazabas.mp3?raw=true'],
+        loop: true,
+        volume: 0.5
+    });
+
+    // Mobilde veya kullanıcı etkileşiminde çal
+    const playSound = () => { if(!sound.playing()){ sound.play(); } };
+    document.body.addEventListener('click', playSound, {once:true});
+    document.body.addEventListener('touchstart', playSound, {once:true});
 });
+</script>
 
 // Mobilde dokununca çal
 document.body.addEventListener('touchstart', ()=>{ 
