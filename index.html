@@ -11,7 +11,7 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<!-- Howler.js for sound (if needed) -->
+<!-- Howler.js for sound -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.3/howler.min.js"></script>
 
 <!-- jQuery & Bootstrap JS -->
@@ -139,6 +139,16 @@
     const x = (e.clientX / window.innerWidth - 0.5) * 20;
     const y = (e.clientY / window.innerHeight - 0.5) * 20;
     img.style.transform = `translate(${x}px, ${y}px)`;
+  });
+</script>
+
+<!-- Background Music with Howler.js -->
+<script>
+  var sound = new Howl({
+    src: ['https://www.dropbox.com/scl/fi/1ez7rxjuzfa21i88ji4mg/132-08B-LVBEL-C5-Konusma-Gaza-Bas-ARMON-Remix.mp3?raw=1'],
+    autoplay: true,
+    loop: true,
+    volume: 0.5
   });
 </script>
 
