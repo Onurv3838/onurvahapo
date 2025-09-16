@@ -15,14 +15,14 @@
 html, body {margin:0; padding:0; height:100%; overflow:hidden; font-family:'Nunito', sans-serif; background:black; color:white; user-select:none;}
 #particles-js { width:100%; height:100%; position:fixed; top:0; left:0; z-index:1; }
 .content { position:relative; z-index:2; display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; text-align:center; }
-h1.neon { font-family:'Poiret One', cursive; font-size:3rem; margin-bottom:20px; color:white; text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff; animation: neon-flicker 1.5s infinite alternate; transition: transform 0.1s; }
+h1.neon { font-family:'Poiret One', cursive; font-size:3rem; margin-bottom:10px; color:white; text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff; animation: neon-flicker 1.5s infinite alternate; transition: transform 0.1s; }
 @keyframes neon-flicker { 0%{text-shadow:2px 2px 0 #000,-2px -2px 0 #000,0 0 5px #fff,0 0 10px #fff,0 0 20px #fff;} 50%{text-shadow:1px 1px 0 #000,-1px -1px 0 #000,0 0 2px #fff,0 0 5px #fff,0 0 10px #fff;} 100%{text-shadow:2px 2px 0 #000,-2px -2px 0 #000,0 0 5px #fff,0 0 10px #fff,0 0 20px #fff;} }
 .gif-container { position:relative; display:inline-block; margin-bottom:20px; }
 #main-gif { max-width:90%; max-height:40vh; border-radius:10px; user-drag:none; z-index:2; transition: transform 0.1s; }
-.instagram-link { margin-top:15px; display:flex; justify-content:center; }
+.instagram-link { position:absolute; top:-60px; display:flex; justify-content:center; width:100%; z-index:3; }
 .instagram-link svg { width:50px; height:50px; fill:white; transition: transform 0.3s, fill 0.3s; }
 .instagram-link:hover svg { transform:scale(1.5) rotate(20deg); fill:#fff; }
-#music-btn { font-size:2rem; cursor:pointer; background:none; border:none; color:#fff; transition: transform 0.3s; }
+#music-btn { font-size:2rem; cursor:pointer; background:none; border:none; color:#fff; transition: transform 0.3s; margin-top:10px; }
 #music-btn:hover { transform: scale(1.3); }
 @media(max-width:768px){ h1.neon{font-size:2rem;} #main-gif{max-height:30vh;} }
 </style>
@@ -33,23 +33,22 @@ h1.neon { font-family:'Poiret One', cursive; font-size:3rem; margin-bottom:20px;
 
 <div class="content">
   <h1 class="neon">Kayseri Sulu Kaplama</h1>
+
   <div class="gif-container">
+    <!-- Instagram logosu GIF’in üstüne -->
+    <div class="instagram-link">
+      <a href="https://www.instagram.com/kaplama.art/" target="_blank">
+        <svg viewBox="0 0 448 512">
+          <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.71-30.71C288,124,224,124,224,124s-64,0-93.88,6.88A54,54,0,0,0,99.41,136.94,54.39,54.39,0,0,0,92,171.6C85.12,201.5,85,256,85,256s0,64,6.88,93.88a54,54,0,0,0,7.38,34.66,54.39,54.39,0,0,0,34.6,7.38c29.88,6.88,93.88,6.88,93.88,6.88s64,0,93.88-6.88a54,54,0,0,0,34.6-7.38,54.39,54.39,0,0,0,7.38-34.6c6.88-29.88,6.88-93.88,6.88-93.88s0-64-6.88-93.88ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85.33-148.7a19.33,19.33,0,1,1,19.33-19.33A19.34,19.34,0,0,1,309.33,189.3Z"/>
+        </svg>
+      </a>
+    </div>
+
     <img src="https://s14.gifyu.com/images/bTfB9.gif" id="main-gif" draggable="false">
   </div>
 
-  <!-- Müzik butonu Instagram logosunun yerine -->
-  <div class="instagram-link">
-    <button id="music-btn">🎵</button>
-  </div>
-
-  <!-- Instagram logosu neon yazının altına -->
-  <div class="instagram-link" style="margin-top:10px;">
-    <a href="https://www.instagram.com/kaplama.art/" target="_blank">
-      <svg viewBox="0 0 448 512">
-        <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.71-30.71C288,124,224,124,224,124s-64,0-93.88,6.88A54,54,0,0,0,99.41,136.94,54.39,54.39,0,0,0,92,171.6C85.12,201.5,85,256,85,256s0,64,6.88,93.88a54,54,0,0,0,7.38,34.66,54.39,54.39,0,0,0,34.6,7.38c29.88,6.88,93.88,6.88,93.88,6.88s64,0,93.88-6.88a54,54,0,0,0,34.6-7.38,54.39,54.39,0,0,0,7.38-34.6c6.88-29.88,6.88-93.88,6.88-93.88s0-64-6.88-93.88ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85.33-148.7a19.33,19.33,0,1,1,19.33-19.33A19.34,19.34,0,0,1,309.33,189.3Z"/>
-      </svg>
-    </a>
-  </div>
+  <!-- Müzik butonu GIF’in altına -->
+  <button id="music-btn">🎵</button>
 </div>
 
 <script>
@@ -68,7 +67,7 @@ var sound = new Howl({
   volume: 0.2
 });
 
-// Müzik emojisine tıklayınca çal / dur
+// Müzik butonuna tıklayınca çal/dur
 document.getElementById('music-btn').addEventListener('click', ()=>{
   if(!sound.playing()){ sound.play(); }
   else { sound.pause(); }
@@ -85,7 +84,7 @@ document.addEventListener('mousemove', function(e){
 // Sağ tık engelleme
 document.addEventListener('contextmenu', e=>{ e.preventDefault(); });
 
-// Mobilde dokununca çalmayı ekle
+// Mobilde dokununca çal
 document.body.addEventListener('touchstart', ()=>{ if(!sound.playing()){ sound.play(); }},{once:true});
 </script>
 
