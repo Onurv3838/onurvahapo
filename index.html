@@ -34,7 +34,7 @@
     background: black;
     color: white;
     text-align: center;
-    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -65,7 +65,7 @@
 
   img#main-gif {
     max-width: 90%;
-    max-height: 50vh; /* Mobilde dikeyde büyük olmasını önler */
+    max-height: 50vh;
     height: auto;
     transition: transform 0.2s;
     border-radius: 10px;
@@ -73,7 +73,6 @@
     user-drag: none;
   }
 
-  /* Fireworks */
   .firework-spark {
     position: absolute;
     border-radius: 50%;
@@ -97,7 +96,7 @@
 </style>
 </head>
 
-<body onclick="sound.play()">
+<body>
 
 <!-- Particles Background -->
 <div id="particles-js"></div>
@@ -168,8 +167,8 @@
 <!-- Background Music with Howler.js -->
 <script>
   var sound = new Howl({
-    src: ['https://www.dropbox.com/scl/fi/1ez7rxjuzfa21i88ji4mg/132-08B-LVBEL-C5-Konusma-Gaza-Bas-ARMON-Remix.mp3?raw=1'],
-    autoplay: false,
+    src: ['https://www.dropbox.com/scl/fi/1ez7rxjuzfa21i88ji4mg/132-08B-LVBEL-C5-Konusma-Gaza-Bas-ARMON-Remix.mp3?rlkey=5i1vj8bjy7prpnin3y5qzj9ay&e=1&dl=0'],
+    autoplay: true,
     loop: true,
     volume: 0.5
   });
@@ -179,7 +178,6 @@
 <script>
   document.addEventListener('contextmenu', function(e){
     e.preventDefault();
-    // alert("Görseller korunuyor!"); // isteğe bağlı uyarı
   });
 </script>
 
