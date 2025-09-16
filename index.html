@@ -8,12 +8,10 @@
 <!-- Favicon -->
 <link rel="icon" href="https://github.com/Onurv3838/onurvahapo/blob/main/kaplama.png?raw=true" type="image/png">
 
+<!-- Fontlar -->
 <link href="https://fonts.googleapis.com/css?family=Nunito|Poiret+One|Varela+Round" rel="stylesheet">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.3/howler.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-
+<!-- CSS -->
 <style>
 html, body {
   margin:0;
@@ -91,29 +89,25 @@ h1.neon {
 </head>
 <body>
 
+<!-- Particles arkaplan -->
 <div id="particles-js"></div>
 
+<!-- İçerik -->
 <div class="content">
   <h1 class="neon">Kayseri Sulu Kaplama</h1>
+
   <div class="gif-container">
     <img src="https://s14.gifyu.com/images/bTfB9.gif" id="main-gif" draggable="false">
   </div>
-  
+
   <a href="https://www.instagram.com/kaplama.art/" target="_blank" class="instagram-link">
     <svg viewBox="0 0 448 512">
       <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.71-30.71C288,124,224,124,224,124s-64,0-93.88,6.88A54,54,0,0,0,99.41,136.94,54.39,54.39,0,0,0,92,171.6C85.12,201.5,85,256,85,256s0,64,6.88,93.88a54,54,0,0,0,7.38,34.66,54.39,54.39,0,0,0,34.6,7.38c29.88,6.88,93.88,6.88,93.88,6.88s64,0,93.88-6.88a54,54,0,0,0,34.6-7.38,54.39,54.39,0,0,0,7.38-34.6c6.88-29.88,6.88-93.88,6.88-93.88s0-64-6.88-93.88ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85.33-148.7a19.33,19.33,0,1,1,19.33-19.33A19.34,19.34,0,0,1,309.33,189.3Z"/>
     </svg>
   </a>
-
-  <!-- Şarkı player -->
-  <div style="margin-top:15px;">
-    <audio id="bg-music" controls autoplay loop>
-      <source src="https://github.com/Onurv3838/onurvahapo/raw/refs/heads/main/assala.mp3" type="audio/mpeg">
-      Tarayıcınız audio elementini desteklemiyor.
-    </audio>
-  </div>
 </div>
 
+<!-- JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.3/howler.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 
@@ -140,20 +134,20 @@ window.onload = function() {
 
     // Howler.js ile otomatik çalma
     var sound = new Howl({
-        src: ['https://github.com/Onurv3838/onurvahapo/raw/refs/heads/main/assala.mp3?raw=true'],
+        src: ['https://github.com/Onurv3838/onurvahapo/blob/main/konusmagazabas.mp3?raw=true'],
         loop: true,
-        volume: 0.2
-      
+        volume: 0.1  // %10 ses
     });
 
-    // Audio elementini başlat
-    const audio = document.getElementById('bg-music');
-    audio.play().then(()=>{ audio.muted=false; }).catch(()=>{});
-
-    // Mobilde veya kullanıcı etkileşimi ile çal
-    const playSound = () => { if(!sound.playing()){ sound.play(); } };
-    document.body.addEventListener('click', playSound, {once:true});
-    document.body.addEventListener('touchstart', playSound, {once:true});
+    // Sayfa açılır açılmaz çal
+    sound.play().catch(function(err){
+      document.body.addEventListener('click', function(){ 
+          if(!sound.playing()){ sound.play(); }
+      }, {once:true});
+      document.body.addEventListener('touchstart', function(){ 
+          if(!sound.playing()){ sound.play(); }
+      }, {once:true});
+    });
 
     // Mouse hareketine göre GIF ve yazı animasyonu
     document.addEventListener('mousemove', function(e){
