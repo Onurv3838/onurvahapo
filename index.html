@@ -105,14 +105,6 @@ h1.neon {
     </svg>
   </a>
 
-  <!-- Şarkı player -->
-  <div style="margin-top:15px;">
-    <audio id="bg-music" controls autoplay loop>
-      <source src="https://github.com/Onurv3838/onurvahapo/blob/main/assala.mp3?raw=true" type="audio/mpeg">
-      Tarayıcınız audio elementini desteklemiyor.
-    </audio>
-  </div>
-</div>
 
 <script>
 // Particles.js
@@ -130,17 +122,27 @@ var sound = new Howl({
   volume: 0.5
 });
 
-// Masaüstü tıklamayla çal
-document.body.addEventListener('click', e=>{
-  if(e.button===0){ 
-    if(!sound.playing()){ sound.play(); }
-  }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.3/howler.min.js"></script>
+<script>
+// Otomatik çalan müzik (görünmez)
+var bgSound = new Howl({
+  src: ['https://github.com/Onurv3838/onurvahapo/blob/main/konusmagazabas.mp3?raw=true'],
+  autoplay: true,
+  loop: true,
+  volume: 0.2
 });
 
-// Mobilde dokununca çal
-document.body.addEventListener('touchstart', ()=>{ 
-  if(!sound.playing()){ sound.play(); }
-},{once:true});
+// Eğer tarayıcı otomatik çalmayı engellerse, tıklama veya dokunma ile başlat
+function tryPlay() {
+  if (!bgSound.playing()) {
+    bgSound.play();
+  }
+}
+
+// Masaüstü ve mobil dokunma için yedek
+document.body.addEventListener('click', tryPlay);
+document.body.addEventListener('touchstart', tryPlay);
+</script>
 
 // Mouse hareketine göre GIF ve yazı animasyonu
 document.addEventListener('mousemove', function(e){
