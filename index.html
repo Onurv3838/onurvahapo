@@ -32,17 +32,24 @@ h1.neon {
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: white;
-  animation: neon-flicker 1.5s infinite alternate;
+  animation: neon-flicker 1.5s infinite alternate, move-text 3s infinite ease-in-out;
 }
 @keyframes neon-flicker {
-  0%{text-shadow:2px 2px 0 #000, -2px -2px 0 #000, 0 0 5px #fff,0 0 10px #fff,0 0 20px #fff;}
+  0%{text-shadow:2px 2px 0 #000, -2px -2px 0 #000,0 0 5px #fff,0 0 10px #fff,0 0 20px #fff;}
   50%{text-shadow:1px 1px 0 #000, -1px -1px 0 #000,0 0 2px #fff,0 0 5px #fff,0 0 10px #fff;}
   100%{text-shadow:2px 2px 0 #000, -2px -2px 0 #000,0 0 5px #fff,0 0 10px #fff,0 0 20px #fff;}
 }
+@keyframes move-text {
+  0% {transform: translateY(0px) rotate(0deg);}
+  25% {transform: translateY(-5px) rotate(-1deg);}
+  50% {transform: translateY(0px) rotate(0deg);}
+  75% {transform: translateY(5px) rotate(1deg);}
+  100% {transform: translateY(0px) rotate(0deg);}
+}
 .gif-container {position:relative;}
 #main-gif {max-width:90%; max-height:45vh; border-radius:10px; user-drag:none; position:relative; z-index:2;}
-.instagram-link svg {width:50px; height:50px; fill:#ff007f; margin-top:15px; transition: transform 0.3s, fill 0.3s;}
-.instagram-link:hover svg {transform:scale(1.5) rotate(20deg); fill:#ff69b4;}
+.instagram-link svg {width:50px; height:50px; fill:white; margin-top:15px; transition: transform 0.3s, fill 0.3s;}
+.instagram-link:hover svg {transform:scale(1.5) rotate(20deg); fill:#fff;}
 @media(max-width:768px){h1.neon{font-size:2rem;}#main-gif{max-height:30vh;}}
 </style>
 </head>
@@ -78,12 +85,13 @@ var sound = new Howl({
   volume:0.5
 });
 
-// Mobilde dokununca da çalması
-window.addEventListener('load', ()=>{
-  if(/Mobi|Android/i.test(navigator.userAgent)){
-    document.body.addEventListener('touchstart', ()=>{ if(!sound.playing()){ sound.play(); } }, {once:true});
-  }
-});
+// Masaüstü ve mobil tetikleme
+function playSound(){
+  if(!sound.playing()){ sound.play(); }
+}
+window.addEventListener('load', ()=>{playSound();});
+document.body.addEventListener('click', e=>{if(e.button===0){playSound();}});
+document.body.addEventListener('touchstart', ()=>{playSound();}, {once:true});
 </script>
 
 </body>
