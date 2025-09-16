@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kayseri Sulu </title>
+<title>Kayseri Sulu Kaplama</title>
 
 <!-- Favicon -->
 <link rel="icon" href="https://github.com/Onurv3838/onurvahapo/blob/main/kaplama.png?raw=true" type="image/png">
@@ -104,7 +104,7 @@ h1.neon {
       <path d="M224,202.66A53.34,53.34,0,1,0,277.34,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.71-30.71C288,124,224,124,224,124s-64,0-93.88,6.88A54,54,0,0,0,99.41,136.94,54.39,54.39,0,0,0,92,171.6C85.12,201.5,85,256,85,256s0,64,6.88,93.88a54,54,0,0,0,7.38,34.66,54.39,54.39,0,0,0,34.6,7.38c29.88,6.88,93.88,6.88,93.88,6.88s64,0,93.88-6.88a54,54,0,0,0,34.6-7.38,54.39,54.39,0,0,0,7.38-34.6c6.88-29.88,6.88-93.88,6.88-93.88s0-64-6.88-93.88ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm85.33-148.7a19.33,19.33,0,1,1,19.33-19.33A19.34,19.34,0,0,1,309.33,189.3Z"/>
     </svg>
   </a>
-
+</div>
 
 <script>
 // Particles.js
@@ -114,17 +114,7 @@ particlesJS('particles-js',{
   "retina_detect":true
 });
 
-// Howler.js ile otomatik çalma (masaüstü & mobil)
-var sound = new Howl({
-  src: ['https://github.com/Onurv3838/onurvahapo/blob/main/konusmagazabas.mp3?raw=true'],
-  autoplay: true,
-  loop: true,
-  volume: 0.5
-});
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.3/howler.min.js"></script>
-<script>
-// Otomatik çalan müzik (görünmez)
+// Howler.js ile otomatik çalma (görünmez)
 var bgSound = new Howl({
   src: ['https://github.com/Onurv3838/onurvahapo/blob/main/konusmagazabas.mp3?raw=true'],
   autoplay: true,
@@ -132,22 +122,17 @@ var bgSound = new Howl({
   volume: 0.2
 });
 
-// Eğer tarayıcı otomatik çalmayı engellerse, tıklama veya dokunma ile başlat
+// Eğer otomatik çalmayı tarayıcı engellerse tıklama veya dokunma ile başlat
 function tryPlay() {
-  if (!bgSound.playing()) {
-    bgSound.play();
-  }
+  if(!bgSound.playing()){ bgSound.play(); }
 }
-
-// Masaüstü ve mobil dokunma için yedek
 document.body.addEventListener('click', tryPlay);
 document.body.addEventListener('touchstart', tryPlay);
-</script>
 
 // Mouse hareketine göre GIF ve yazı animasyonu
 document.addEventListener('mousemove', function(e){
-  const x = (window.innerWidth/2 - e.clientX)/40;
-  const y = (window.innerHeight/2 - e.clientY)/40;
+  const x = (window.innerWidth/2 - e.clientX)/20; // hareketi artırdım
+  const y = (window.innerHeight/2 - e.clientY)/20;
   document.getElementById('main-gif').style.transform = `translate(${x}px,${y}px)`;
   document.querySelector('h1.neon').style.transform = `translate(${x/2}px,${y/2}px)`;
 });
