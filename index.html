@@ -6,7 +6,6 @@
 <title>Kayseri Sulu Kaplama</title>
 
 <link rel="icon" href="https://dosya.co/2bnnljsx5y05/7ae34181-4dbc-4db7-a393-270e78f3f9d5-fotor-bg-remover-20250915211611.png" type="image/png">
-
 <link href="https://fonts.googleapis.com/css?family=Nunito|Poiret+One|Varela+Round" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.3/howler.min.js"></script>
@@ -17,12 +16,31 @@
 html, body {margin:0; padding:0; height:100%; overflow:hidden; font-family:'Nunito', sans-serif; background:black; color:white; user-select:none;}
 #particles-js {width:100%; height:100%; position:fixed; top:0; left:0; z-index:1;}
 .content {position:relative; z-index:2; display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh;}
-h1.neon {font-family:'Poiret One', cursive; font-size:3rem; margin-bottom:20px; color:#0ff;
-text-shadow:0 0 5px #0ff,0 0 10px #0ff,0 0 20px #0ff,0 0 40px #0ff; animation:neon-flicker 1.5s infinite alternate;}
-@keyframes neon-flicker {0%{text-shadow:0 0 5px #0ff,0 0 10px #0ff,0 0 20px #0ff,0 0 40px #0ff;}50%{text-shadow:0 0 2px #0ff,0 0 5px #0ff,0 0 10px #0ff,0 0 20px #0ff;}100%{text-shadow:0 0 5px #0ff,0 0 10px #0ff,0 0 20px #0ff,0 0 40px #0ff;}}
+h1.neon {
+  font-family:'Poiret One', cursive;
+  font-size:3rem;
+  margin-bottom:20px;
+  color:white;
+  text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+               0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
+  background: repeating-linear-gradient(
+      45deg,
+      rgba(50,50,50,0.2),
+      rgba(50,50,50,0.2) 1px,
+      rgba(0,0,0,0.1) 2px,
+      rgba(0,0,0,0.1) 4px
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: white;
+  animation: neon-flicker 1.5s infinite alternate;
+}
+@keyframes neon-flicker {
+  0%{text-shadow:2px 2px 0 #000, -2px -2px 0 #000, 0 0 5px #fff,0 0 10px #fff,0 0 20px #fff;}
+  50%{text-shadow:1px 1px 0 #000, -1px -1px 0 #000,0 0 2px #fff,0 0 5px #fff,0 0 10px #fff;}
+  100%{text-shadow:2px 2px 0 #000, -2px -2px 0 #000,0 0 5px #fff,0 0 10px #fff,0 0 20px #fff;}
+}
 .gif-container {position:relative;}
 #main-gif {max-width:90%; max-height:45vh; border-radius:10px; user-drag:none; position:relative; z-index:2;}
-canvas#visualizer {position:absolute; top:0; left:0; z-index:3; pointer-events:none;}
 .instagram-link svg {width:50px; height:50px; fill:#ff007f; margin-top:15px; transition: transform 0.3s, fill 0.3s;}
 .instagram-link:hover svg {transform:scale(1.5) rotate(20deg); fill:#ff69b4;}
 @media(max-width:768px){h1.neon{font-size:2rem;}#main-gif{max-height:30vh;}}
@@ -36,7 +54,6 @@ canvas#visualizer {position:absolute; top:0; left:0; z-index:3; pointer-events:n
   <h1 class="neon">Kayseri Sulu Kaplama</h1>
   <div class="gif-container">
     <img src="https://s14.gifyu.com/images/bTfB9.gif" id="main-gif" draggable="false">
-    <canvas id="visualizer"></canvas>
   </div>
   <a href="https://www.instagram.com/kaplama.art/" target="_blank" class="instagram-link">
     <svg viewBox="0 0 448 512">
@@ -54,26 +71,19 @@ particlesJS('particles-js',{
 });
 
 // Howler.js music
-var sound = new Howl({src:['konusmagazabas.mp3'],autoplay:false,loop:true,volume:0.5});
-window.addEventListener('load', ()=>{if(!/Mobi|Android/i.test(navigator.userAgent)){sound.play();}});
-document.body.addEventListener('click',e=>{if(e.button===0&&!sound.playing()){sound.play();}});
-document.addEventListener('contextmenu',e=>e.preventDefault());
+var sound = new Howl({
+  src:['konusmagazabas.mp3'],
+  autoplay:true,
+  loop:true,
+  volume:0.5
+});
 
-// Circular visualizer
-const audioCtx=new (window.AudioContext||window.webkitAudioContext)();
-const audioElement = new Audio('konusmagazabas.mp3'); audioElement.crossOrigin="anonymous"; audioElement.loop=true; audioElement.autoplay=true; audioElement.volume=0.5;
-const source=audioCtx.createMediaElementSource(audioElement);
-const analyser=audioCtx.createAnalyser();
-source.connect(analyser); analyser.connect(audioCtx.destination);
-analyser.fftSize=256;
-const bufferLength=analyser.frequencyBinCount; const dataArray=new Uint8Array(bufferLength);
-const canvas=document.getElementById('visualizer'); const ctx=canvas.getContext('2d');
-function resizeCanvas(){ const rect=document.getElementById('main-gif').getBoundingClientRect(); canvas.width=rect.width; canvas.height=rect.height; canvas.style.position='absolute'; canvas.style.left=rect.left+'px'; canvas.style.top=rect.top+'px';}
-window.addEventListener('resize',resizeCanvas); resizeCanvas();
-function draw(){ requestAnimationFrame(draw); analyser.getByteFrequencyData(dataArray); ctx.clearRect(0,0,canvas.width,canvas.height);
-const cx=canvas.width/2; const cy=canvas.height/2; const radius=Math.min(canvas.width,canvas.height)/2*0.6;
-for(let i=0;i<bufferLength;i++){ const angle=i*(2*Math.PI/bufferLength); const barHeight=dataArray[i]/2; const x=cx+Math.cos(angle)*radius; const y=cy+Math.sin(angle)*radius; ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+Math.cos(angle)*(radius+barHeight), cy+Math.sin(angle)*(radius+barHeight)); ctx.strokeStyle=`hsl(${i*360/bufferLength},100%,50%)`; ctx.lineWidth=2; ctx.stroke();} }
-draw();
+// Mobilde dokununca da çalması
+window.addEventListener('load', ()=>{
+  if(/Mobi|Android/i.test(navigator.userAgent)){
+    document.body.addEventListener('touchstart', ()=>{ if(!sound.playing()){ sound.play(); } }, {once:true});
+  }
+});
 </script>
 
 </body>
