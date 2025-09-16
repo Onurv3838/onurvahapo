@@ -24,6 +24,9 @@
 <!-- Particles.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 
+<!-- Font Awesome for Instagram icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-pI6yL9pF2aJbV4QvCnOfl8r6Q9QOeZl2ZtQbkLb8+vB0c1hXoX0B1M7K48wqQyXoZGJtM+4g2/R+gFTF+XqMfA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <style>
 html, body {
   margin: 0;
@@ -56,29 +59,21 @@ html, body {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Üstten başlat */
+  justify-content: center;
   align-items: center;
   height: 100vh;
-  padding-top: 50px; /* Mobilde görseli biraz yukarı taşı */
+  padding-top: 0px;
   box-sizing: border-box;
 }
 
 img#main-gif {
   max-width: 90%;
-  max-height: 45vh; /* Mobilde biraz daha küçültüldü */
+  max-height: 45vh;
   height: auto;
-  transition: transform 0.2s;
+  transition: transform 0.1s;
   border-radius: 10px;
   -webkit-user-drag: none;
   user-drag: none;
-}
-
-.firework-spark {
-  position: absolute;
-  border-radius: 50%;
-  width: 8px;
-  height: 8px;
-  background-color: #ffff80;
 }
 
 h1 {
@@ -90,9 +85,34 @@ h1 {
   line-height: 1.2;
 }
 
+.instagram-link {
+  margin-top: 20px;
+  font-size: 2.5rem;
+  color: #E1306C;
+  transition: transform 0.2s;
+}
+.instagram-link:hover {
+  transform: scale(1.2);
+}
+
+/* Profesyonel mouse */
+.custom-cursor {
+  width: 25px;
+  height: 25px;
+  border: 3px solid #E1306C;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s ease-out, background-color 0.2s;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 @media (max-width: 768px) {
   h1 { font-size: 2rem; }
-  img#main-gif { max-height: 30vh; margin-top: 20px; } /* Mobilde küçült ve biraz yukarı al */
+  img#main-gif { max-height: 30vh; }
 }
 </style>
 </head>
@@ -106,7 +126,15 @@ h1 {
 <div class="content">
   <h1>Kayseri Sulu Kaplama</h1>
   <img src="https://s14.gifyu.com/images/bTfB9.gif" id="main-gif" draggable="false">
+  
+  <!-- Instagram Icon -->
+  <a href="https://www.instagram.com/kaplama.art/" target="_blank" class="instagram-link">
+    <i class="fab fa-instagram"></i>
+  </a>
 </div>
+
+<!-- Custom Cursor -->
+<div class="custom-cursor" id="cursor"></div>
 
 <!-- Particles.js Script -->
 <script>
@@ -125,56 +153,36 @@ particlesJS('particles-js', {
 });
 </script>
 
-<!-- Fireworks JS -->
-<script>
-const numSparks = 14;
-const sparks = [];
-for(let i=0;i<numSparks;i++){
-  const div = document.createElement('div');
-  div.classList.add('firework-spark');
-  document.body.appendChild(div);
-  sparks.push(div);
-}
-
-let step = 0;
-function launchFireworks(){
-  step++;
-  const winH = window.innerHeight;
-  const winW = window.innerWidth;
-  const centerX = winW/2;
-  const centerY = winH/2;
-
-  sparks.forEach((spark, i) => {
-    const angle = (360/numSparks) * i * Math.PI/180;
-    spark.style.top = centerY + Math.sin(step/10 + angle) * 100 + "px";
-    spark.style.left = centerX + Math.cos(step/10 + angle) * 100 + "px";
-  });
-
-  requestAnimationFrame(launchFireworks);
-}
-launchFireworks();
-</script>
-
 <!-- GIF Mouse Move -->
 <script>
 const img = document.getElementById('main-gif');
 document.addEventListener('mousemove', (e) => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 20;
-  const y = (e.clientY / window.innerHeight - 0.5) * 20;
+  const x = (e.clientX / window.innerWidth - 0.5) * 40; // Daha hızlı hareket
+  const y = (e.clientY / window.innerHeight - 0.5) * 40;
   img.style.transform = `translate(${x}px, ${y}px)`;
+});
+</script>
+
+<!-- Custom Cursor Script -->
+<script>
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  const x = e.clientX;
+  const y = e.clientY;
+  cursor.style.transform = `translate(${x}px, ${y}px)`;
 });
 </script>
 
 <!-- Background Music with Howler.js -->
 <script>
 var sound = new Howl({
-  src: ['https://raw.githubusercontent.com/Onurv3838/onurvahapo/main/konusmagazabas.mp3'],
+  src: ['konusmagazabas.mp3'], // GitHub Pages ile aynı dizinde
   autoplay: true,
   loop: true,
   volume: 0.5
 });
 
-// Mobilde autoplay engeli varsa, kullanıcı ilk dokunuşta çalsın
+// Mobilde autoplay engeli için kullanıcı dokununca çalsın
 document.body.addEventListener('click', () => {
   if(!sound.playing()){
     sound.play();
