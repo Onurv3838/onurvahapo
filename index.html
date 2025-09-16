@@ -109,29 +109,28 @@ h1.neon {
 <script>
 // Particles.js
 particlesJS('particles-js',{
-  "particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle"},"opacity":{"value":0.5},"size":{"value":5,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","out_mode":"out"}},
-  "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"}},"modes":{"repulse":{"distance":200},"push":{"particles_nb":4}}},
-  "retina_detect":true
+  "particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle"},"opacity":{"value":0.5},"size":{"value":5,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","out_mode":"out"}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"}},"modes":{"repulse":{"distance":200},"push":{"particles_nb":4}}},"retina_detect":true
 });
 
-// Howler.js ile otomatik çalma (görünmez)
-var bgSound = new Howl({
-  src: ['https://github.com/Onurv3838/onurvahapo/blob/main/konusmagazabas.mp3?raw=true'],
+// Howler.js ile otomatik çalma
+var sound = new Howl({
+  src: ['https://github.com/Onurv3838/onurvahapo/raw/refs/heads/main/assala.mp3'],
   autoplay: true,
   loop: true,
-  volume: 0.2
+  volume: 0.2,
+  html5: true
 });
 
-// Eğer otomatik çalmayı tarayıcı engellerse tıklama veya dokunma ile başlat
-function tryPlay() {
-  if(!bgSound.playing()){ bgSound.play(); }
+// Mobil ve masaüstü için kullanıcı etkileşimi
+function playSound() {
+  if(!sound.playing()) { sound.play(); }
 }
-document.body.addEventListener('click', tryPlay);
-document.body.addEventListener('touchstart', tryPlay);
+document.body.addEventListener('click', playSound, {once:true});
+document.body.addEventListener('touchstart', playSound, {once:true});
 
 // Mouse hareketine göre GIF ve yazı animasyonu
 document.addEventListener('mousemove', function(e){
-  const x = (window.innerWidth/2 - e.clientX)/20; // hareketi artırdım
+  const x = (window.innerWidth/2 - e.clientX)/20; // hareketi biraz artırdık
   const y = (window.innerHeight/2 - e.clientY)/20;
   document.getElementById('main-gif').style.transform = `translate(${x}px,${y}px)`;
   document.querySelector('h1.neon').style.transform = `translate(${x/2}px,${y/2}px)`;
@@ -140,6 +139,11 @@ document.addEventListener('mousemove', function(e){
 // Sağ tık engelleme
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
+});
+
+// Sayfa açılır açılmaz çalması için
+window.addEventListener('load', function(){
+  playSound();
 });
 </script>
 
